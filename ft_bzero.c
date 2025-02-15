@@ -12,16 +12,16 @@
 
 #include "libft.h"
 
-void    ft_bzero(void *s, size_t n)
+void	ft_bzero(void *s, size_t n)
 {
-    size_t  i;
+	size_t	i;
 
-    i = 0;
-    while (i < n)
-    {
-        ((unsigned char *)s)[i] = 0;
-        i++;
-    }
+	i = 0;
+	while (i < n)
+	{
+		((unsigned char *)s)[i] = 0;
+		i++;
+	}
 }
 /*
 int main(void)
@@ -29,6 +29,6 @@ int main(void)
     char str[] = "Well hello";
 
     ft_bzero(str + 4, 5);
-    printf("Result: %s", str);
+    printf("Result: %s\n", str);
     return (0);
 }*/

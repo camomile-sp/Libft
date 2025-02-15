@@ -28,7 +28,7 @@ int main()
 {
 	int	length;
 
-	length = ft_strlen("Well hello!");
+	length = ft_strlen("Well hello");
 	printf("%d", length);
 	return 0;
 }*/

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim_1.c                                     :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: apavlova <apavlova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 10:37:46 by apavlova          #+#    #+#             */
-/*   Updated: 2025/01/03 17:21:44 by marvin           ###   ########.fr       */
+/*   Updated: 2025/01/11 19:13:02 by apavlova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*allocate_empty_string(void)
+static char	*allocate_empty_string(void)
 {
 	char	*trims;
 
@@ -23,7 +23,7 @@ char	*allocate_empty_string(void)
 	return (trims);
 }
 
-int	ft_is_in_set(char c, const char *set)
+static int	ft_is_in_set(char c, const char *set)
 {
 	while (*set)
 	{
@@ -42,16 +42,14 @@ char	*ft_strtrim(char const *s1, char const *set)
 	size_t	trim_end;
 
 	if (!s1 || !set)
-		return (allocate_empty_string());
+		return (NULL);
 	trim_start = 0;
 	while (s1[trim_start] && ft_is_in_set(s1[trim_start], set))
 		trim_start++;
-	trim_end = 0;
-	while (s1[trim_end] != '\0')
-		trim_end++;
+	trim_end = ft_strlen(s1);
 	if (trim_end > 0)
 		trim_end--;
-	while (trim_end > trim_start && ft_is_in_set(s1[trim_end], set))
+	while (trim_end >= trim_start && ft_is_in_set(s1[trim_end], set))
 		trim_end--;
 	if (trim_end < trim_start)
 		return (allocate_empty_string());
@@ -64,7 +62,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	trims[i] = '\0';
 	return (trims);
 }
-
+/*
 int	main(void)
 {
 	char *s1 = "123Well hello31";
@@ -73,9 +71,11 @@ int	main(void)
 
 	trims = ft_strtrim(s1, s2);
 	if (trims)
+	{
 		printf("Trimmed string: '%s'\n", trims);
+		free(trims);
+	}
 	else
-        printf("Memory allocation failed");
-	free(trims);
+		printf("Memory allocation failed");
 	return (0);
-}
+}*/

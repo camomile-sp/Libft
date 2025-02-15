@@ -29,9 +29,8 @@ int	main(void)
 {
 	char src[] = "Well hello";
 	char dest[20];
-	char *result;
 
-	result = ft_memcpy(dest, src, 4);
-	printf("%s", dest);
+	ft_memcpy(dest, src, 9);
+	printf("%s\n", dest);
 	return (0);
 }*/

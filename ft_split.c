@@ -12,66 +12,82 @@
 
 #include "libft.h"
 
-size_t  ft_count_s(const char *s, char c)
+static size_t	ft_count_s(const char *s, char c)
 {
-    size_t  i;
-    size_t  count;
+	size_t	i;
+	size_t	count;
 
-    i = 0;
-    count = 0;
-    while (s[i])
-    {
-        while (s[i] == c)
-            i++;
-        if (s[i] != '\0')
-        {
-            count++;
-            while (s[i] != c && s[i] != '\0')
-                i++;
-        }
-    }
-    return (count);
+	i = 0;
+	count = 0;
+	while (s[i])
+	{
+		while (s[i] == c)
+			i++;
+		if (s[i] != '\0')
+		{
+			count++;
+			while (s[i] != c && s[i] != '\0')
+				i++;
+		}
+	}
+	return (count);
 }
 
-size_t  ft_subs_len(const char *s, char c, size_t start)
+static size_t	ft_skip_delim(const char *s, char c, size_t i)
 {
-    size_t  end;
-
-    end = start;
-    while (s[end] && s[end] != c)
-        end++;
-    return (end - start);
+	while (s[i] == c)
+		i++;
+	return (i);
 }
 
-char    **ft_split(char const *s, char c)
+static size_t	ft_subs_len(const char *s, char c, size_t start)
 {
-    size_t  i;
-    size_t  j;
-    size_t  jump;
-    char    **arr;
+	size_t	end;
 
-    i = 0;
-    if (!s)
-        return (NULL);
-    arr = ft_calloc((ft_count_s(s, c) + 1), sizeof(char *));
-    if (!arr)
-        return (NULL);
-    i = 0;
-    j = 0;
-    while (s[i] != '\0')
-    {
-        while (s[i] == c)
-            i++;
-        if (!s[i])
-            break;
-        jump = ft_subs_len(s, c, i);
-        arr[j] = ft_substr(s, i, jump);
-        j++;
-        i += jump;
-    }
-    return (arr);
+	end = start;
+	while (s[end] && s[end] != c)
+		end++;
+	return (end - start);
 }
 
+static void	ft_free_arr(char **arr, size_t j)
+{
+	while (j > 0)
+	{
+		free(arr[--j]);
+	}
+	free(arr);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	size_t	i;
+	size_t	j;
+	size_t	jump;
+	char	**arr;
+
+	if (!s)
+		return (NULL);
+	arr = ft_calloc((ft_count_s(s, c) + 1), sizeof(char *));
+	if (!arr)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (s[i] != '\0')
+	{
+		i = ft_skip_delim(s, c, i);
+		if (!s[i])
+			break ;
+		jump = ft_subs_len(s, c, i);
+		arr[j] = ft_substr(s, i, jump);
+		if (!arr[j])
+			return (ft_free_arr(arr, j), NULL);
+		j++;
+		i += jump;
+	}
+	return (arr);
+}
+/*
 int main(void)
 {
     char    *str = "-first---second-third forth-";
@@ -99,4 +115,4 @@ int main(void)
     else
         printf("Memory allocation failed\n");
     return (0);
-}
+}*/

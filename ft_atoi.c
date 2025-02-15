@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int	ft_recurs(const char *nptr)
+static int	ft_recurs(const char *nptr)
 {
 	int	num;
 	int	num_temp;
@@ -57,9 +57,9 @@ int	ft_atoi(const char *nptr)
 	else
 		return (ft_recurs (nptr));
 }
-
+/*
 int	main(void)
 {
 	printf("%d\n", ft_atoi("   -1234ab567"));
 	return (0);
-}
+}*/

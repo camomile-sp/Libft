@@ -34,7 +34,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	news[j] = '\0';
 	return (news);
 }
-
+/*
 int main(void)
 {
     char    *str1 = "Well_";
@@ -50,4 +50,4 @@ int main(void)
     else
         printf("Memory allocation failed");
     return (0);
-}
+}*/

@@ -24,7 +24,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 	src_size = ft_strlen(src);
 	dst_size = ft_strlen(dst);
 	if (size <= dst_size)
-		return (dst_size + src_size);
+		return (size + src_size);
 	i = 0;
 	j = dst_size;
 	while (j + 1 < size && src[i] != '\0')
@@ -39,14 +39,15 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 /*
 int main()
 {
-	char str1[10] = "Well";
-	char str2[] = " Hello";
+	char str1[] = "Well";
+	char str2[] = "_hello";
 	unsigned int n;
 
-	n = ft_strlcat(str1, str2, sizeof(str1));
+	n = ft_strlcat(str1, str2, 8);
 
 	printf("%s\n", str1);
 	printf("%s\n", str2);
 	printf("%u\n", n);
 	return (0);
-}*/
+}
+*/

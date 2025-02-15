@@ -28,7 +28,7 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 /*
 int main()
 {
-	char str1[] = "AB";
+	char str1[] = "ABb";
 	char str2[] = "ABB";
 	int n;
 	n = ft_strncmp(str1, str2, 3);
